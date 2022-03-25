@@ -1,18 +1,24 @@
-.p {
-	margin: 0;
-}
+.footer {
+	display: grid;
 
-.s {
-	font-size: 14px;
-	line-height: 24px;
-}
+	padding: 25px 30px;
 
-.m {
+	color: var(--white);
+
+	background: var(--primary);
+	grid-template-columns: 1fr auto auto;
+	gap: 10px 40px;
+
 	font-size: 16px;
-	line-height: 24px;
+	line-height: 20px;
 }
 
-.l {
-	font-size: 18px;
-	line-height: 29px;
+.footer a:hover {
+	color: var(--gray-light);
+}
+
+@media (max-width: 768px) {
+	.footer {
+		grid-template-columns: 1fr;
+	}
 }
