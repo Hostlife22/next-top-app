@@ -39,7 +39,7 @@ const firstLevelMenu: FirstLevelMenuItem[] = [
 
 export const Menu = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);
-
+  s;
   const buildFirstLevel = (): JSX.Element => {
     return (
       <>
