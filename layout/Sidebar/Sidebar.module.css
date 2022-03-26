@@ -1,18 +1,9 @@
-.p {
-	margin: 0;
+.sidebar {
+	display: grid;
+	align-content: start;
+	gap: 20px;
 }
 
-.s {
-	font-size: 14px;
-	line-height: 24px;
-}
-
-.m {
-	font-size: 16px;
-	line-height: 24px;
-}
-
-.l {
-	font-size: 18px;
-	line-height: 29px;
+.logo {
+	margin-top: 34px;
 }
