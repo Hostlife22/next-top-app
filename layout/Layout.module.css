@@ -7,7 +7,7 @@
 		". header header ." auto
 		". sidebar body ." 1fr
 		"footer footer footer footer" auto / auto 230px minmax(320px, 1200px) auto;
-	gap: 0 30px;
+	gap: 40px 30px;
 }
 
 .header {
@@ -38,10 +38,14 @@
 	}
 
 	.sidebar {
-		display: none;
+		display: none !important;
 	}
 
 	.header {
 		display: block;
+	}
+
+	.body {
+		padding: 15px;
 	}
 }
