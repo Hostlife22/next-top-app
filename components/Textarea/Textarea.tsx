@@ -1,7 +1,7 @@
 import cn from "classnames";
 import React from "react";
+import styles from "./Textarea.module.css";
 import { TextareaProps } from "./Textarea.props";
-import styles from "./TextareaProps.module.css";
 
 export const Textarea = ({
   className,
