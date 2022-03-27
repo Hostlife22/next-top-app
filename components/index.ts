@@ -1,6 +1,7 @@
 export * from "./Advantages/Advantages";
 export * from "./Button/Button";
 export * from "./Card/Card";
+export * from "./Diveder/Diveder";
 export * from "./Htag/Htag";
 export * from "./Input/Input";
 export * from "./P/P";

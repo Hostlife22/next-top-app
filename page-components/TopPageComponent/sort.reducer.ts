@@ -16,14 +16,14 @@ export const sortReducer = (
     case SortEnum.Rating:
       return {
         sort: SortEnum.Rating,
-        products: state.products
-          .slice()
-          .sort((a, b) => a.initialRating - b.initialRating),
+        products: state.products.sort(
+          (a, b) => a.initialRating - b.initialRating
+        ),
       };
     case SortEnum.Price:
       return {
         sort: SortEnum.Price,
-        products: state.products.slice().sort((a, b) => a.price - b.price),
+        products: state.products.sort((a, b) => a.price - b.price),
       };
 
     default:
