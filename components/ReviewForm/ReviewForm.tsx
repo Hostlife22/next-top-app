@@ -11,6 +11,7 @@ import { ReviewFormProps } from "./ReviewForm.props";
 
 export const ReviewForm = ({
   productId,
+  isOppend,
   className,
   ...props
 }: ReviewFormProps): JSX.Element => {
@@ -19,12 +20,13 @@ export const ReviewForm = ({
     control,
     handleSubmit,
     reset,
+    clearErrors,
     formState: { errors },
   } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
-  const onSubmit = async (formData: IReviewForm) => {
+  const onSubmit = async (formData: IReviewForm): Promise<void> => {
     try {
       const { data } = await axios.post<IReviewSentResponse>(
         API.review.createDemo,
@@ -50,6 +52,8 @@ export const ReviewForm = ({
           })}
           placeholder="Имя"
           error={errors.name}
+          tabIndex={isOppend ? 0 : -1}
+          aria-invalid={errors.name ? "true" : "false"}
         />
         <Input
           {...register("title", {
@@ -61,6 +65,8 @@ export const ReviewForm = ({
           placeholder="Заголовок отзыва"
           className={styles.title}
           error={errors.title}
+          tabIndex={isOppend ? 0 : -1}
+          aria-invalid={errors.title ? "true" : "false"}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -75,6 +81,7 @@ export const ReviewForm = ({
                 ref={field.ref}
                 error={errors.rating}
                 setRating={field.onChange}
+                tabIndex={isOppend ? 0 : -1}
               />
             )}
           ></Controller>
@@ -89,9 +96,17 @@ export const ReviewForm = ({
           placeholder="Текст отзыва"
           className={styles.description}
           error={errors.description}
+          aria-label="Текст отзыва"
+          aria-invalid={errors.description ? "true" : "false"}
         />
         <div className={styles.submit}>
-          <Button appearance="primary">Отправить</Button>
+          <Button
+            appearance="primary"
+            tabIndex={isOppend ? 0 : -1}
+            onClick={(): void => clearErrors()}
+          >
+            Отправить
+          </Button>
           <span className={styles.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и
             проверку
