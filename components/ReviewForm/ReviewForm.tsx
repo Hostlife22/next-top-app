@@ -38,8 +38,12 @@ export const ReviewForm = ({
       } else {
         setError("Что-то пошло не так");
       }
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError(String(error));
+      }
     }
   };
 

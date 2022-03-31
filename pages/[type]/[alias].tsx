@@ -12,8 +12,13 @@ import {
 import { ProductModel } from "../../interfaces/product.interface";
 import { withLayout } from "../../layout/Layout";
 import { TopPageComponent } from "../../page-components";
+import { Error404 } from "../404";
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
+  if (!page || !products) {
+    return <Error404 />;
+  }
+
   return (
     <>
       <Head>
@@ -24,7 +29,6 @@ function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
         <meta property="og:url" content={page.metaDescription} />
         <meta property="og:type" content="article" />
       </Head>
-
       <TopPageComponent
         firstCategory={firstCategory}
         page={page}
@@ -49,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 

@@ -47,7 +47,10 @@ export const Menu = (): JSX.Element => {
       );
   };
 
-  const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
+  const openSecondLevelKey = (
+    key: KeyboardEvent,
+    secondCategory: string
+  ): void => {
     if (key.code === "Space" || key.code === "Enter") {
       key.preventDefault();
       openSecondLevel(secondCategory);
@@ -58,7 +61,7 @@ export const Menu = (): JSX.Element => {
     return (
       <ul className={styles.firstLevelList}>
         {firstLevelMenu.map((m) => (
-          <li key={m.id} area-expanded={m.id === firstCategory}>
+          <li key={m.id} area-expanded={(m.id === firstCategory).toString()}>
             <Link href={`/${m.route}`}>
               <a>
                 <div
@@ -91,12 +94,12 @@ export const Menu = (): JSX.Element => {
           return (
             <li key={m._id.secondCategory}>
               <button
-                onKeyDown={(key: KeyboardEvent) =>
+                onKeyDown={(key: KeyboardEvent): void =>
                   openSecondLevelKey(key, m._id.secondCategory)
                 }
                 className={styles.secondLevel}
                 onClick={(): void => openSecondLevel(m._id.secondCategory)}
-                area-expanded={m.isOpened}
+                area-expanded={m?.isOpened?.toString()}
               >
                 {m._id.secondCategory}
               </button>

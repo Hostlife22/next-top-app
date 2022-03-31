@@ -1,9 +1,8 @@
 import cn from "classnames";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import React, { ForwardedRef, forwardRef, useRef, useState } from "react";
 import { Button, Card, Diveder, Raiting, Review, ReviewForm, Tag } from "..";
-import { declOfNum, priceRu } from "../../helpers/helpers";
+import { declOfNum, parseStringToNum, priceRu } from "../../helpers/helpers";
 import styles from "./Product.module.css";
 import { ProductProps } from "./Product.props";
 
@@ -34,7 +33,7 @@ export const Product = motion(
         <div className={cn(className)} {...props} ref={ref}>
           <Card className={styles.product}>
             <div className={styles.logo}>
-              <Image
+              <img
                 src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
                 alt={product.title}
                 width={70}
@@ -45,7 +44,9 @@ export const Product = motion(
             <div className={styles.price}>
               <span>
                 <span className="visualyHidden">цена</span>
-                {priceRu(product.price)}
+                {product.price
+                  ? priceRu(product.price)
+                  : parseStringToNum(product.characteristics)}
               </span>
               {product.oldPrice && (
                 <Tag className={styles.oldPrice} color="green">

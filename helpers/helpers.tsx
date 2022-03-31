@@ -32,7 +32,7 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
   },
 ];
 
-export const priceRu = (price: number): string =>
+export const priceRu = (price = 0): string =>
   price
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
@@ -49,4 +49,19 @@ export const declOfNum = (
       ? 2
       : cases[number % 10 < 5 ? number % 10 : 5]
   ];
+};
+
+interface IService {
+  name: string;
+  value: string;
+}
+
+export const parseStringToNum = (service: IService[]): string => {
+  const serviceObj = service.find((s) => s.name.toLowerCase() === "цена");
+
+  if (!serviceObj) {
+    return priceRu(0);
+  } else {
+    return priceRu(parseInt(serviceObj.value.replace(/[^\d]/g, "")));
+  }
 };
