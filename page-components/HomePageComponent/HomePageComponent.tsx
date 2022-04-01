@@ -30,6 +30,7 @@ const HomePageComponent = ({
         <div className={styles.categories}>
           {firstLevelMenu.map((c) => (
             <Card
+              tabIndex={0}
               key={c.id}
               className={styles.category}
               onClick={(): void => handleClick(c.route)}
