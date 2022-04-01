@@ -1,6 +1,8 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../../context/app.context";
 import { API } from "../../helpers/api";
 import { firstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menu.interface";
@@ -8,6 +10,14 @@ import { withLayout } from "../../layout/Layout";
 import CategoryPage from "../../page-components/CategoryPage/CategoryPage";
 
 function Type({ menu, params }: TypeProps): JSX.Element {
+  const { setMenu } = useContext(AppContext);
+
+  useEffect(() => {
+    if (menu && setMenu) {
+      setMenu(menu);
+    }
+  }, [menu, setMenu]);
+
   return <CategoryPage menu={menu} params={params} />;
 }
 

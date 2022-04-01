@@ -14,7 +14,12 @@ import { withLayout } from "../../layout/Layout";
 import { TopPageComponent } from "../../page-components";
 import { Error404 } from "../404";
 
-function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
+function TopPage({
+  firstCategory,
+  page,
+  products,
+  menu,
+}: TopPageProps): JSX.Element {
   if (!page || !products) {
     return <Error404 />;
   }
